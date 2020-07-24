@@ -1,0 +1,327 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="theme-color" content="#F9F9F9" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+  
+  
+  <!-- Font Awesome -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Product+Sans' rel='stylesheet' type='text/css'>
+  
+
+
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/switch.css">
+ 
+
+</head>
+
+<style>
+
+</style>
+
+
+
+
+
+
+<body style="background-color: #FFFFFF" >
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sidebarNavigation" data-sideBarClass=" navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">SmartAgri</a>
+        <button class="navbar-toggler leftNavbarToggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto py-3">
+                        <li class="nav-item">
+                          <a class="nav-link" href="index.html">Dashboard <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                          <a class="nav-link" href="chartTemp.html">Data Log</a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link" href="tables/tempData.html">Temp</a>
+                              </li>
+                              <li class="nav-item">
+                                    <a class="nav-link" href="tables/moistureData.html">Soil Moisture</a>
+                                  </li>
+                                  <li class="nav-item">
+                                        <a class="nav-link" href="tables/humidityData.html">Humidity</a>
+                                      </li>
+                                      <li class="nav-item">
+                                            <a class="nav-link" href="waterLevelData.html">waterLevel</a>
+                                          </li>
+                        
+                        </li>
+                      </ul>
+         
+        </div>
+      </nav>
+    
+  <div class="container" style="padding-top: 25px">
+  
+  
+    <canvas id="myChart"></canvas>
+   
+</div>
+
+
+  <script src="js/vendor/modernizr-3.6.0.min.js"></script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  
+  
+  
+ 
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  
+  <script src="js/sidebar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+
+
+
+
+
+
+</body>
+
+<script>
+   var ctx = document.getElementById('myChart').getContext("2d");
+   
+   getData();
+    console.log(d);
+    var dt =[];
+    var dh =[];
+    var dsm =[];
+    var lb = [];
+    
+    if(d.length<20){
+        d.forEach(element => {
+            dt.push(parseInt(element["Temp"]));
+            dh.push(parseInt(element["Humidity"]));
+            dsm.push(parseInt(element["Moisture"]));
+            lb.push(element["Time"]);
+        });
+    }
+    else{
+        if(d.length>20){
+            for (let index = d.length-20; index < d.length; index++) {
+                dt.push(parseInt(d[index]["Temp"]));
+                dh.push(parseInt(d[index]["Humidity"]));
+                dsm.push(parseInt(d[index]["Moisture"]));
+                lb.push(d[index]["Time"]);
+                
+            }
+
+        }
+    }
+    
+
+
+
+var gradientFillTemp = ctx.createLinearGradient(0, 0, 0, 500);
+var gradientFillHumidity = ctx.createLinearGradient(0, 0, 0, 500);
+var gradientFillSM = ctx.createLinearGradient(0, 0, 0, 500);
+
+gradientFillTemp.addColorStop(0, "rgba(128, 182, 244, 1)");
+
+gradientFillTemp.addColorStop(1, "rgba(244, 144, 128, 0)");
+
+
+gradientFillHumidity.addColorStop(0, "rgba(6,198,162,0.48)");
+
+gradientFillHumidity.addColorStop(1, "rgba(34,192,162,0)");
+
+gradientFillSM.addColorStop(0, "rgba(90, 78, 78, 0.6)");
+
+gradientFillSM.addColorStop(1, "rgba(90, 78, 78, 0.17)");
+
+
+
+
+
+   var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: lb,
+        datasets: [{
+            label: "Temp",
+            borderColor:               "rgba(128, 182, 244, 1)",
+            pointBorderColor:          "rgba(128, 182, 244, 1)",
+            pointBackgroundColor:      "rgba(128, 182, 244, 1)",
+            pointHoverBackgroundColor: "rgba(255, 182, 244, 1)",
+            pointHoverBorderColor:     "rgba(255, 182, 244, 1)",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBorderWidth: 1,
+            pointRadius: 3,
+            fill: true,
+            backgroundColor: gradientFillTemp,
+            borderWidth: 4,
+            data: dt
+        },{
+            label: "Humidity",
+            borderColor:               "rgba(6,198,162,0.48)",
+            pointBorderColor:          "rgba(6,198,162,0.48)",
+            pointBackgroundColor:      "rgba(6,198,162,0.48)",
+            pointHoverBackgroundColor: "rgba(6,198,162,0.48)",
+            pointHoverBorderColor:     "rgba(6,198,162,0.48)",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBorderWidth: 1,
+            pointRadius: 3,
+            fill: true,
+            backgroundColor: gradientFillHumidity,
+            borderWidth: 4,
+            data: dh
+        },
+        {
+            label: "Soil Moisture",
+            borderColor:               "rgba(128, 182, 244, 1)",
+            pointBorderColor:          "rgba(128, 182, 244, 1)",
+            pointBackgroundColor:      "rgba(128, 182, 244, 1)",
+            pointHoverBackgroundColor: "rgba(255, 182, 244, 1)",
+            pointHoverBorderColor:     "rgba(255, 182, 244, 1)",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBorderWidth: 1,
+            pointRadius: 3,
+            fill: true,
+            backgroundColor: gradientFillSM,
+            borderWidth: 4,
+            data: dsm
+        }]
+    },
+    options: {
+        legend: {
+            position: "bottom"
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    fontColor: "rgba(0,0,0,0.5)",
+                    fontStyle: "bold",
+                    beginAtZero: true,
+                    maxTicksLimit: 5,
+                    padding: 20
+                },
+                gridLines: {
+                    drawTicks: false,
+                    display: false
+                }
+
+}],
+            xAxes: [{
+                gridLines: {
+                    zeroLineColor: "transparent"
+
+},
+                ticks: {
+                    padding: 20,
+                    fontColor: "rgba(0,0,0,0.5)",
+                    fontStyle: "bold"
+                }
+            }]
+        }
+    }
+});
+
+
+ setTimeout(updateChart, 5100);
+
+function updateChart(){
+
+setTimeout(updateChart, 5100);
+    if (d.length > length)
+    {   console.log(d[d.length-1])
+       
+        removeData(myChart);
+        dt.push(parseInt(d[d.length-1]["Temp"]));
+                dh.push(parseInt(d[d.length-1]["Humidity"]));
+                dsm.push(parseInt(d[d.length-1]["Moisture"]));
+                lb.push(d[d.length-1]["Time"]);
+                length = d.length;
+                myChart.update();
+                console.log("Data length changed");
+
+    }
+
+}
+
+
+function removeData(chart) {
+    chart.data.labels.shift();
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.shift();
+    });
+   
+}
+
+function getData() {
+            
+      
+            $.ajax({
+			type: 'POST',
+			async: false,
+			url: 'data.php',
+			data:{"request":"h"},
+			dataType: 'json',
+			success: function(response)
+			{
+
+				d = response;
+			}
+
+        });
+
+    
+
+           
+          
+                setTimeout(getData, 5000);
+          
+        }
+
+
+
+
+   
+   
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -9,7 +9,7 @@
 
 	<script>
 		var oldLength;
-	var dps; // dataPoints
+	var dps; 
 	var dps1;
 	window.onload = function () {
 		var d;
@@ -98,7 +98,7 @@ var f = function(){
 
 
 var updateInterval = 1000;
- // number of dataPoints visible at any point
+
 
  var updateChart = function (count) {
  	//console.log(dps);

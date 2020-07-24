@@ -1,97 +1,171 @@
-table {
-  border-spacing: 1;
-  border-collapse: collapse;
-  background: white;
-  border-radius: 6px;
-  overflow: hidden;
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
-}
-table * {
-  position: relative;
-}
-table td, table th {
-  padding-left: 8px;
-}
-table thead tr {
-  padding: 5px;
-  height: 60px;
-  background: #FFED86;
-  font-size: 25px;
-  text-align: center;
-}
-table tbody tr {
-  height: 48px;
-  border-bottom: 1px solid #E3F1D5;
-}
-table tbody tr:last-child {
-  border: 0;
-}
-table td, table th {
-  text-align: left;
-}
-table td.l, table th.l {
-  text-align: right;
-}
-table td.c, table th.c {
-  text-align: center;
-}
-table td.r, table th.r {
-  text-align: center;
+.navbar-brand{
+    font-family: Product Sans;
+    font-size: 35px;
 }
 
-@media screen and (max-width: 0.5em) {
-  table {
-    display: block;
+.image--cover {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 6px;
+  
+    object-fit: cover;
+    object-position: center right;
   }
-  table > *, table tr, table td, table th {
-    display: block;
-  }
-  table thead {
-    display: none;
-  }
-  table tbody tr {
-    height: auto;
-    padding: 8px 0;
-  }
-  table tbody tr td {
-    padding-left: 45%;
-    margin-bottom: 12px;
-  }
-  table tbody tr td:last-child {
-    margin-bottom: 0;
-  }
-  table tbody tr td:before {
+
+.card{
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+
+.icon-font{
+    font-size: 1.6em;
+}
+.icon-background {
+
+    color: rgba(0, 0, 0, 0.18);
+}
+
+.temperature{
+    background: linear-gradient(45deg, #be285a 0%, #a11e4a 100%);
+    color: #FFFFFF;
+    transition: all 0.3s ease-in-out;
+}
+
+.temperature::after {
+    content: '';
     position: absolute;
-    font-weight: 700;
-    width: 40%;
-    left: 10px;
-    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 6px 20px 5px #be285a80;
+    transition: opacity 0.30s ease-in-out;
   }
-  table tbody tr td:nth-child(1):before {
-    content: "Code";
-  }
-  table tbody tr td:nth-child(2):before {
-    content: "Stock";
-  }
-  table tbody tr td:nth-child(3):before {
-    content: "Cap";
-  }
-  table tbody tr td:nth-child(4):before {
-    content: "Inch";
-  }
-  table tbody tr td:nth-child(5):before {
-    content: "Box Type";
-  }
+  
+
+.temperature:hover{
+    transform: scale(1.05, 1.05);
+   
 }
-body {
-  font: 400 28px 'Calibri','Arial';
-  padding: 20px;
+.temperature:hover::after {
+    opacity: 1;
+  }
+
+.humidity{
+    background: linear-gradient(45deg, #02d11e 0%, #117c3a 100%);
+    transition: all 0.3s ease-in-out;
+    color: #FFFFFF;
 }
 
-blockquote {
-  color: white;
-  text-align: center;
+
+.humidity::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 6px 20px 0 #117c3a80;
+    transition: opacity 0.30s ease-in-out;
+  }
+  
+
+.humidity:hover{
+    transform: scale(1.05, 1.05);
+   
 }
+.humidity:hover::after {
+    opacity: 1;
+  }
+
+
+
+.sMoisture{
+    background: linear-gradient(45deg, #3a0308 0%, #ce6c11 100%);
+   
+    color: #FFFFFF;
+    transition: all 0.3s ease-in-out;
+}
+
+.sMoisture::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 6px 20px 0 #3a030880;
+    transition: opacity 0.30s ease-in-out;
+  }
+
+.sMoisture:hover{
+    transform: scale(1.05, 1.05);
+   
+}
+.sMoisture:hover::after {
+    opacity: 1;
+  }
+
+
+.waterLevel{
+    background: linear-gradient(45deg, #0288d1 0%, #26c6da 100%);
+    
+    color: #FFFFFF;
+    transition: all 0.3s ease-in-out;
+}
+
+
+.waterLevel::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 6px 20px 0 #0288d180;
+    transition: opacity 0.30s ease-in-out;
+  }
+.waterLevel:hover{
+    transform: scale(1.05, 1.05);
+   
+}
+.waterLevel:hover::after {
+    opacity: 1;
+  }
+
+
+
+.sunlight{
+    background: linear-gradient(45deg, #d1c302 0%, #da7d26 100%);
+   
+    color: #FFFFFF;
+    transition: all 0.3s ease-in-out;
+}
+
+.sunlight:hover{
+    transform: scale(1.05, 1.05);
+   
+}
+.sunlight:hover::after {
+    opacity: 1;
+  }
+
+  
+.sunlight::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 6px 20px 0 #da7d2680;
+    transition: opacity 0.30s ease-in-out;
+  }
