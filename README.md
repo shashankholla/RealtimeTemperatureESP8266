@@ -12,22 +12,22 @@ Send realtime temperature and humidity data from Arduino UNO using ESP8266 to we
 
 Screen grab of the site hosted (currently not functional because the hardware is not connected)
 
-![](C:\Users\shash\AppData\Roaming\marktext\images\ffb3d9b77f1b4e59c44308d30d01b3c24ec49506.png)
+![](Screenshots/2020-07-24-11-20-38-image.png)
 
 Log data and observe change over a period of time
 
-    ![](C:\Users\shash\AppData\Roaming\marktext\images\297efbd9824f9fe67dbee38809aaf46a7a2f2071.png)
+    ![](Screenshots/2020-07-24-11-20-17-image.png)
 
 Get web notifications if temperature crosses set value
 
-![](C:\Users\shash\AppData\Roaming\marktext\images\25619898c6353b2339bcfc97f2c81a1852788e42.png)
+![](Screenshots/2020-07-24-11-25-08-image.png)
 
 
 
 Arduino wiring
 
-![](C:\Users\shash\AppData\Roaming\marktext\images\1df82e85d7b20f9d60dee8b958d259762f937806.png)
+![](Screenshots/2020-07-24-11-11-52-image.png)
 
 The communication flow is briefly explained through this diagram
 
-![](C:\Users\shash\AppData\Roaming\marktext\images\cee630c60f2438d975e2491cdc42264f96bd0382.png)
+![](Screenshots/2020-07-24-11-21-26-image.png)
